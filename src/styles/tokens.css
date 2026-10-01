@@ -1,0 +1,274 @@
+/* ==========================================================================
+   DESIGN TOKENS
+   SiteAxis
+   Visual language: engineering instrumentation — hairline rules, drafting
+   geometry, dense data, restrained colour. No gradients, no glass, no bounce.
+   ========================================================================== */
+
+:root {
+  /* ---- Typography ---- */
+  --font-ui: 'Plex Sans', 'Plex Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --fs-micro: 10.5px;
+  --fs-tiny: 11.5px;
+  --fs-sm: 12.5px;
+  --fs-body: 13.5px;
+  --fs-md: 15px;
+  --fs-lg: 17px;
+  --fs-xl: 21px;
+  --fs-2xl: 26px;
+  --fs-3xl: 32px;
+
+  --lh-tight: 1.18;
+  --lh-snug: 1.35;
+  --lh-body: 1.55;
+
+  --track-label: 0.085em;
+  --track-wide: 0.14em;
+
+  /* ---- Geometry: deliberately small radii, drafting register ---- */
+  --r-0: 0px;
+  --r-1: 2px;
+  --r-2: 3px;
+  --r-3: 4px;
+
+  /* ---- Spacing scale (4px base) ---- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+
+  /* ---- Layout ---- */
+  --sidebar-w: 250px;
+  --sidebar-w-collapsed: 58px;
+  --topbar-h: 54px;
+
+  /* ---- Density (overridden by [data-density="compact"]) ---- */
+  --row-h: 38px;
+  --control-h: 34px;
+  --gap: 16px;
+  --panel-pad: 18px;
+
+  /* ---- Motion: short, functional, never decorative ---- */
+  --t-fast: 110ms;
+  --t-base: 150ms;
+  --ease: cubic-bezier(0.32, 0.72, 0.28, 1);
+
+  /* ---- Status / priority palette ---- */
+  --st-planning: #5a6b73;
+  --st-active: #0d4f63;
+  --st-hold: #96620f;
+  --st-completed: #2c6a4d;
+  --st-cancelled: #97341f;
+
+  --pr-low: #5a6b73;
+  --pr-medium: #1b5a83;
+  --pr-high: #96620f;
+  --pr-urgent: #97341f;
+}
+
+/* ============================== LIGHT (default) ========================== */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  --canvas: #eef1f2;
+  --surface: #ffffff;
+  --surface-2: #f7f9f9;
+  --surface-3: #eceff0;
+  --surface-inset: #f2f5f5;
+  --overlay-scrim: rgba(18, 26, 29, 0.52);
+
+  --ink: #12181b;
+  --ink-2: #3c484e;
+  --ink-3: #6a7880;
+  --ink-4: #8d9aa1;
+  --ink-inv: #ffffff;
+
+  --line: #dbe1e3;
+  --line-2: #c5ced2;
+  --line-3: #aab6bb;
+  --line-strong: #97a5ab;
+
+  --brand: #0d4f63;
+  --brand-hover: #0a3f50;
+  --brand-active: #08313e;
+  --brand-ink: #ffffff;
+  --brand-soft: #e6eff2;
+  --brand-soft-ink: #0a3b4a;
+  --brand-line: #a9c8d2;
+
+  --ok: #2c6a4d;
+  --ok-soft: #e6f0ea;
+  --ok-line: #a9cdb9;
+
+  --warn: #96620f;
+  --warn-soft: #f8f0e0;
+  --warn-line: #ddc08a;
+
+  --bad: #97341f;
+  --bad-soft: #f9eae6;
+  --bad-line: #e2b3a6;
+
+  --info: #1b5a83;
+  --info-soft: #e7eff5;
+  --info-line: #a9c4d8;
+
+  --neutral-soft: #eceff0;
+  --neutral-ink: #55636a;
+
+  --focus-ring: #1b7fa3;
+  --grid-line: #dfe5e6;
+
+  --shadow-pop: 0 1px 2px rgba(15, 22, 25, 0.08), 0 10px 26px -10px rgba(15, 22, 25, 0.24);
+  --shadow-modal: 0 2px 6px rgba(15, 22, 25, 0.1), 0 28px 60px -18px rgba(15, 22, 25, 0.36);
+}
+
+/* ================================= DARK ================================== */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --canvas: #0d1214;
+  --surface: #151b1e;
+  --surface-2: #1a2225;
+  --surface-3: #202a2d;
+  --surface-inset: #10161a;
+  --overlay-scrim: rgba(4, 8, 9, 0.66);
+
+  --ink: #e7ecee;
+  --ink-2: #b3bfc4;
+  --ink-3: #839197;
+  --ink-4: #6b787e;
+  --ink-inv: #0d1214;
+
+  --line: #262f33;
+  --line-2: #333f44;
+  --line-3: #435055;
+  --line-strong: #55646a;
+
+  --brand: #3f9cba;
+  --brand-hover: #58aec8;
+  --brand-active: #2c7f9b;
+  --brand-ink: #06171d;
+  --brand-soft: #16303a;
+  --brand-soft-ink: #8fd0e2;
+  --brand-line: #2b5462;
+
+  --ok: #5fa87f;
+  --ok-soft: #14251c;
+  --ok-line: #2c4a38;
+
+  --warn: #d2a24c;
+  --warn-soft: #26200f;
+  --warn-line: #4d3f1c;
+
+  --bad: #d4755e;
+  --bad-soft: #2a1712;
+  --bad-line: #553026;
+
+  --info: #6aa9d1;
+  --info-soft: #131f27;
+  --info-line: #26404f;
+
+  --neutral-soft: #202a2d;
+  --neutral-ink: #a3b0b5;
+
+  --focus-ring: #4fa8c0;
+  --grid-line: #232c30;
+
+  --shadow-pop: 0 1px 2px rgba(0, 0, 0, 0.5), 0 10px 26px -10px rgba(0, 0, 0, 0.7);
+  --shadow-modal: 0 2px 6px rgba(0, 0, 0, 0.55), 0 28px 60px -18px rgba(0, 0, 0, 0.8);
+}
+
+/* ================== ACCENT SCHEMES (Settings → Appearance) ================= */
+[data-accent='petrol'] {
+  --brand: #0d4f63;
+  --brand-hover: #0a3f50;
+  --brand-active: #08313e;
+  --brand-ink: #ffffff;
+  --brand-soft: #e6eff2;
+  --brand-soft-ink: #0a3b4a;
+  --brand-line: #a9c8d2;
+}
+[data-theme='dark'][data-accent='petrol'] {
+  --brand: #3f9cba;
+  --brand-hover: #58aec8;
+  --brand-active: #2c7f9b;
+  --brand-ink: #06171d;
+  --brand-soft: #16303a;
+  --brand-soft-ink: #8fd0e2;
+  --brand-line: #2b5462;
+}
+
+[data-accent='steel'] {
+  --brand: #33485c;
+  --brand-hover: #263848;
+  --brand-active: #1b2a36;
+  --brand-ink: #ffffff;
+  --brand-soft: #e8ecf1;
+  --brand-soft-ink: #22323f;
+  --brand-line: #b0bcc9;
+}
+[data-theme='dark'][data-accent='steel'] {
+  --brand: #7d9fbd;
+  --brand-hover: #93b1cb;
+  --brand-active: #678bab;
+  --brand-ink: #0b141c;
+  --brand-soft: #1a242e;
+  --brand-soft-ink: #b3cbe1;
+  --brand-line: #2c3d4c;
+}
+
+[data-accent='ochre'] {
+  --brand: #8a5a12;
+  --brand-hover: #73490d;
+  --brand-active: #5d3a0a;
+  --brand-ink: #ffffff;
+  --brand-soft: #f6efe2;
+  --brand-soft-ink: #6a450e;
+  --brand-line: #d6bd8c;
+}
+[data-theme='dark'][data-accent='ochre'] {
+  --brand: #d1a050;
+  --brand-hover: #e0b169;
+  --brand-active: #b7893c;
+  --brand-ink: #1a1204;
+  --brand-soft: #2a2213;
+  --brand-soft-ink: #e2c288;
+  --brand-line: #4c3d1f;
+}
+
+[data-accent='graphite'] {
+  --brand: #303b41;
+  --brand-hover: #232c31;
+  --brand-active: #191f23;
+  --brand-ink: #ffffff;
+  --brand-soft: #ebedee;
+  --brand-soft-ink: #242d32;
+  --brand-line: #b6bec2;
+}
+[data-theme='dark'][data-accent='graphite'] {
+  --brand: #93a0a6;
+  --brand-hover: #a8b4b9;
+  --brand-active: #7d8a90;
+  --brand-ink: #10161a;
+  --brand-soft: #1e2629;
+  --brand-soft-ink: #b9c4c9;
+  --brand-line: #364045;
+}
+
+/* =============================== DENSITY ================================= */
+[data-density='compact'] {
+  --row-h: 30px;
+  --control-h: 29px;
+  --gap: 12px;
+  --panel-pad: 14px;
+  --fs-body: 13px;
+  --fs-sm: 12px;
+}

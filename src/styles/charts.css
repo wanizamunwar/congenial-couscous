@@ -1,0 +1,235 @@
+/* ==========================================================================
+   CHARTS — custom SVG chart chrome (technical register)
+   ========================================================================== */
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.chart-svg {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+.chart-grid-line {
+  stroke: var(--grid-line);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+.chart-axis-line {
+  stroke: var(--line-2);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+.chart-tick {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  fill: var(--ink-4);
+  font-variant-numeric: tabular-nums;
+}
+.chart-tick.is-strong {
+  fill: var(--ink-3);
+  font-weight: 500;
+}
+.chart-label {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  fill: var(--ink-2);
+  font-weight: 500;
+}
+.chart-value {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  fill: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.chart-series-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  fill: var(--ink-3);
+  letter-spacing: 0.06em;
+}
+.chart-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+.chart-bar {
+  transition: opacity var(--t-fast) var(--ease);
+}
+.chart-hover-band {
+  fill: var(--ink);
+  opacity: 0;
+  transition: opacity var(--t-fast) var(--ease);
+  pointer-events: none;
+}
+.chart-g:hover .chart-hover-band,
+.chart-g.is-on .chart-hover-band {
+  opacity: 0.045;
+}
+.chart-line {
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.chart-area {
+  opacity: 0.11;
+}
+.chart-dot {
+  stroke: var(--surface);
+  stroke-width: 1.4;
+}
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 0 14px 11px;
+  font-size: var(--fs-tiny);
+  color: var(--ink-3);
+}
+.chart-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.chart-legend-swatch {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.chart-legend-val {
+  font-family: var(--font-mono);
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Chart tooltip (HTML overlay, not SVG) */
+.chart-tip {
+  position: absolute;
+  z-index: 40;
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-pop);
+  padding: 6px 9px;
+  font-size: var(--fs-tiny);
+  pointer-events: none;
+  min-width: 128px;
+  transform: translate(-50%, -100%);
+  margin-top: -8px;
+}
+.chart-tip-title {
+  font-weight: 600;
+  color: var(--ink);
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+.chart-tip-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.chart-tip-row .sw {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+}
+.chart-tip-row .k { color: var(--ink-3); }
+.chart-tip-row .v {
+  margin-inline-start: auto;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.chart-host {
+  position: relative;
+}
+
+/* Donut centre readout */
+.donut-center {
+  text-anchor: middle;
+}
+.donut-center .big {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 600;
+  fill: var(--ink);
+  letter-spacing: -0.03em;
+}
+.donut-center .small {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--ink-4);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.donut-seg {
+  transition: opacity var(--t-fast) var(--ease);
+  cursor: pointer;
+}
+.donut-seg:hover {
+  opacity: 0.82;
+}
+
+/* Horizontal ranked bar list (used for "top materials", "top expenses") */
+.ranklist {
+  display: flex;
+  flex-direction: column;
+}
+.rankrow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 84px;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.rankrow:last-child { border-bottom: 0; }
+.rankrow:hover { background: var(--surface-2); }
+.rankrow-name {
+  font-size: var(--fs-sm);
+  color: var(--ink);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rankrow-name .n {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+.rankrow-name .n span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rankrow-name .sub {
+  font-size: var(--fs-micro);
+  color: var(--ink-4);
+  font-family: var(--font-mono);
+}
+.rankrow-val {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-align: end;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.rankrow-val .sub {
+  display: block;
+  font-size: var(--fs-micro);
+  color: var(--ink-4);
+  font-weight: 400;
+}

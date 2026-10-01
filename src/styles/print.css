@@ -1,0 +1,241 @@
+/* ==========================================================================
+   PRINT — professional report output
+   The app shell chrome is removed; record detail is laid out on A4/Letter.
+   ========================================================================== */
+
+@page {
+  size: A4;
+  margin: 14mm 13mm 16mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  body {
+    font-size: 10pt;
+  }
+
+  /* Hide all application chrome */
+  .sidebar,
+  .topbar,
+  .footbar,
+  .nav-scrim,
+  .toast-host,
+  .page-head-actions,
+  .no-print,
+  .toolbar,
+  .tblfoot,
+  .tabs,
+  .panel-actions,
+  .cell-actions,
+  .cmdk,
+  .scrim {
+    display: none !important;
+  }
+
+  .shell,
+  .shell[data-collapsed='true'] {
+    display: block !important;
+    height: auto !important;
+  }
+  .main {
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  .page {
+    overflow: visible !important;
+    height: auto !important;
+    display: block !important;
+  }
+  .page-inner {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  /* Force light palette for print */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  .panel,
+  .dl,
+  .tbl,
+  .stat,
+  .titleblock {
+    border-color: #999 !important;
+    background: #fff !important;
+    break-inside: avoid;
+  }
+  .panel-head,
+  .tbl thead th,
+  .tblfoot,
+  .titleblock-aside,
+  .panel-foot {
+    background: #f2f2f2 !important;
+    border-color: #999 !important;
+  }
+  .tbl thead th {
+    color: #000 !important;
+  }
+  .tbl tbody td,
+  .dl-row > dd {
+    color: #000 !important;
+    border-color: #bbb !important;
+  }
+  .t-muted,
+  .t-muted-2,
+  .field-hint,
+  .panel-sub,
+  .modal-sub {
+    color: #444 !important;
+  }
+  .t-label,
+  .field-label,
+  .dl-row > dt {
+    color: #333 !important;
+  }
+  .badge {
+    border: 1px solid #666 !important;
+    color: #000 !important;
+    background: #f0f0f0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .badge .dot {
+    background: #000 !important;
+  }
+  .bar {
+    border: 1px solid #666 !important;
+    background: #fff !important;
+  }
+  .bar > i {
+    background: #444 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .stat-val,
+  .num,
+  .mono {
+    color: #000 !important;
+  }
+  .stat::before {
+    background: #666 !important;
+  }
+  .alert {
+    border: 1px solid #666 !important;
+    background: #f6f6f6 !important;
+    color: #000 !important;
+  }
+  .titleblock-name,
+  .t-h1,
+  .t-h2,
+  .t-h3,
+  .t-h4 {
+    color: #000 !important;
+  }
+  .titleblock-code {
+    color: #000 !important;
+  }
+
+  /* Page break control */
+  .print-break {
+    break-before: page;
+  }
+  .avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .tbl thead {
+    display: table-header-group;
+  }
+  .tbl tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  /* Print-only sheet header/footer */
+  .print-only {
+    display: block !important;
+  }
+  .print-sheet-head {
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 7px;
+    margin-bottom: 14px;
+  }
+  .print-sheet-head .who {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #333;
+    line-height: 1.5;
+  }
+  .print-sheet-head .who b {
+    display: block;
+    font-size: 10pt;
+    letter-spacing: 0.06em;
+    color: #000;
+  }
+  .print-sheet-head .what {
+    text-align: right;
+    font-size: 13pt;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .print-sheet-head .meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5pt;
+    color: #444;
+    text-align: right;
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .print-sign {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 22px;
+    padding-top: 10px;
+    border-top: 1px solid #999;
+    break-inside: avoid;
+  }
+  .print-sign > div {
+    font-size: 7.5pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #444;
+  }
+  .print-sign .line {
+    border-bottom: 1px solid #000;
+    height: 26px;
+    margin-bottom: 4px;
+  }
+  .print-foot-note {
+    margin-top: 16px;
+    padding-top: 7px;
+    border-top: 1px solid #ccc;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    color: #555;
+    letter-spacing: 0.04em;
+  }
+}
+
+.print-only {
+  display: none;
+}
